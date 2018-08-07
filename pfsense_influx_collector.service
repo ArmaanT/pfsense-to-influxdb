@@ -1,0 +1,10 @@
+Description=pfSense-to-InfluxDB
+
+[Service]
+Type=simple
+User=CHANGEME
+ExecStart=/usr/bin/python3 /path/to/pfSenseInfluxCollector.py
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,4 @@
+__pycache__
+*.pyc
+fauxapi_lib.py
+settings.conf
