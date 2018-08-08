@@ -5,7 +5,7 @@ Note: pfSense-to-InfluxDB is not intended to be installed on pfSense since pfSen
 ![](./grafana.png)
 
 ## Installation
-1. Install and configure [FauxAPI](https://github.com/ndejong/pfsense_fauxapi) on your pfSense router. Remember to add a new user to `/etc/fauxapi/credentials.ini` 
+1. Install and configure [FauxAPI](https://github.com/ndejong/pfsense_fauxapi) on your pfSense router. Remember to add a new user to `/etc/fauxapi/credentials.ini` with permissions: `config_get, function_call`
   * Then add the following lines to `/etc/fauxapi/pfsense_function_calls.txt`:
   ```
   gwlb.inc:function return_gateways_status($byname = false)
