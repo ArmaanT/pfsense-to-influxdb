@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-from fauxapi_lib import FauxapiLib
+from PfsenseFauxapi.PfsenseFauxapi import PfsenseFauxapi
 import json
 from influxdb import InfluxDBClient
 import configparser
@@ -13,7 +13,7 @@ class pfSenseInfluxCollector:
 		"""Program to send pfSense information collected from FauxAPI to InfluxDB"""
 		self.config = configparser.ConfigParser()
 		self.config.read(config_file)
-		self.fauxapi = FauxapiLib(self.config['FAUXAPI']['APIHost'], self.config['FAUXAPI']['APIKey'], self.config['FAUXAPI']['APISecret'])
+		self.fauxapi = PfsenseFauxapi(self.config['FAUXAPI']['APIHost'], self.config['FAUXAPI']['APIKey'], self.config['FAUXAPI']['APISecret'])
 		self.influx_client = InfluxDBClient(host=self.config['INFLUXDB']['InfluxDBHost'], port=self.config['INFLUXDB']['Port'],
 			username=self.config['INFLUXDB']['Username'], password=self.config['INFLUXDB']['Password'], database=self.config['INFLUXDB']['Database'])
 		self.pfSense_config = self.fauxapi.config_get()
