@@ -19,12 +19,12 @@ Note: pfSense-to-InfluxDB is not intended to be installed on pfSense since pfSen
 2. Install latest release of pfSense-to-InfluxDB.
   * Using git:
   ```shell
-  git clone https://github.com/ArmaanT/pfsense-to-influxdb.git --branch v1.0.0
+  git clone https://github.com/ArmaanT/pfsense-to-influxdb.git --branch v1.1.0
   cd pfsense-to-influxdb
   ```
   * Or download directly:
   ```shell
-  wget -O pfsense-to-influxdb.tar.gz "https://github.com/ArmaanT/pfsense-to-influxdb/archive/v1.0.0.tar.gz"
+  wget -O pfsense-to-influxdb.tar.gz "https://github.com/ArmaanT/pfsense-to-influxdb/archive/v1.1.0.tar.gz"
   tar -xf pfsense-to-influxdb.tar.gz
   mv pfsense-to-influxdb-* pfsense-to-influxdb
   rm pfsense-to-influxdb.tar.gz
@@ -89,12 +89,12 @@ A sample `pfsense_dashboard.json` is provided. First, add your pfsense InfluxDB 
 * Using git:
 ```shell
 cd /path/to/pfsense-to-influxdb
-git pull origin v1.0.0
+git pull origin v1.1.0
 ```
 * Downloading directly
 ```shell
 cd /tmp/
-wget -O pfsense-to-influxdb.tar.gz "https://github.com/ArmaanT/pfsense-to-influxdb/archive/v1.0.0.tar.gz"
+wget -O pfsense-to-influxdb.tar.gz "https://github.com/ArmaanT/pfsense-to-influxdb/archive/v1.1.0.tar.gz"
 tar -xf pfsense-to-influxdb.tar.gz
 mv pfsense-to-influxdb-*/* /path/to/previously-installed/pfsense-to-influxdb/
 rm pfsense-to-influxdb.tar.gz
