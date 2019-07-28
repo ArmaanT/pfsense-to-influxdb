@@ -77,7 +77,7 @@ Rename `settings.sample.conf` to `settings.conf` and add your desired settings:
 A sample systemd service file, `pfsense_influx_collector.service`, is included to automatically run pfSense-to-InfluxDB on boot. Open the file to change the following lines to reflect your user and path to pfSenseInfluxCollector.py:
 ```shell
 User=CHANGEME
-ExecStart=/usr/bin/python3 /path/to/plexInfluxdbCollector.py
+ExecStart=/usr/bin/python3 /path/to/pfSenseInfluxCollector.py
 ```
 Then install, enable, and start pfsense_influx_collector.service:
 ```shell
