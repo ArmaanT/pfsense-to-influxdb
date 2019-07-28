@@ -34,10 +34,6 @@ Note: pfSense-to-InfluxDB is not intended to be installed on pfSense since pfSen
   ```shell
   pip3 install -r requirements.txt
   ```
-4. Download FauxAPI's [Python interface](https://raw.githubusercontent.com/ndejong/pfsense_fauxapi/master/extras/client-libs/python/fauxapi_lib.py)
-  ```shell
-  wget "https://raw.githubusercontent.com/ndejong/pfsense_fauxapi/master/extras/client-libs/python/fauxapi_lib.py"
-  ``` 
 
 ## Configuration
 Rename `settings.sample.conf` to `settings.conf` and add your desired settings:
