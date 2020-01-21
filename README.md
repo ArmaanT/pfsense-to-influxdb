@@ -35,6 +35,12 @@ Note: pfSense-to-InfluxDB is not intended to be installed on pfSense since pfSen
   pip3 install -r requirements.txt
   ```
 
+## Docker
+
+You can use docker to run this application quickly.
+
+    docker run -v settings.conf:/app/config/settings.conf ncareau/pfsense-to-influxdb:latest
+
 ## Configuration
 Rename `settings.sample.conf` to `settings.conf` and add your desired settings:
 

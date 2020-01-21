@@ -8,4 +8,4 @@ COPY . /app
 
 RUN pip3 install -r requirements.txt
 
-CMD [ "python3", "/app/pfSenseInfluxCollector.py"]
+CMD [ "python3", "/app/pfSenseInfluxCollector.py", "--config", "/app/config/settings.conf"]
