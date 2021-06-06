@@ -35,24 +35,32 @@ Note: pfSense-to-InfluxDB is not intended to be installed on pfSense since pfSen
   pip3 install -r requirements.txt
   ```
 
+## Docker
+
+pfSense-to-InfluxDB is also published on Docker Hub and can be run using the following command with a custom settings file:
+
+```bash
+docker run -v settings.conf:/app/config/settings.conf armaant/pfsense-to-influxdb:1.1.0
+```
+
 ## Configuration
 Rename `settings.sample.conf` to `settings.conf` and add your desired settings:
 
 ### General
 | Key   | Description                                        |
-|:------|:---------------------------------------------------|
+| :---- | :------------------------------------------------- |
 | Delay | Time (in seconds) between updates sent to InfluxDB |
 
 ### FauxAPI
 | Key       | Description                                          |
-|:----------|:-----------------------------------------------------|
+| :-------- | :--------------------------------------------------- |
 | APIHost   | IP Address or FQDN of pfSense Router                 |
 | APIKey    | API Key created in `/etc/fauxapi/credentials.ini`    |
 | APISecret | API Secret created in `/etc/fauxapi/credentials.ini` |
 
 ### InfluxDB
-| Key       | Description                            |
-|:----------|:---------------------------------------|
+| Key          | Description                         |
+| :----------- | :---------------------------------- |
 | InfluxDBHost | IP Address or FQDN of InfluxDB Host |
 | Port         | InfluxDB port. Normally 8086        |
 | Username     | InfluxDB Username                   |
@@ -60,14 +68,14 @@ Rename `settings.sample.conf` to `settings.conf` and add your desired settings:
 | Database     | InfluxDB Database                   |
 
 ### Modules
-| Key                      | Description                                                                          |
-|:-------------------------|:-------------------------------------------------------------------------------------|
-|Gateway_Status            | Enable metric gathering on gateway statuses (true/false)                             |
-|Interface_Statistics      | Enable metric gathering on interface statistics (true/false)                         |
-|Interface_Status          | Enable metric gathering on interface statuses (true/false)                           |
-|OpenVPN_Client_Status     | Enable metric gathering on pfSense OpenVPN clients (true/false)                      |
-|OpenVPN_Connected_Clients | Enable metric gathering on clients connected to pfSense OpenVPN servers (true/false) |
-|Services_Status           | Enable metric gathering on service statuses (true/false)                             |
+| Key                       | Description                                                                          |
+| :------------------------ | :----------------------------------------------------------------------------------- |
+| Gateway_Status            | Enable metric gathering on gateway statuses (true/false)                             |
+| Interface_Statistics      | Enable metric gathering on interface statistics (true/false)                         |
+| Interface_Status          | Enable metric gathering on interface statuses (true/false)                           |
+| OpenVPN_Client_Status     | Enable metric gathering on pfSense OpenVPN clients (true/false)                      |
+| OpenVPN_Connected_Clients | Enable metric gathering on clients connected to pfSense OpenVPN servers (true/false) |
+| Services_Status           | Enable metric gathering on service statuses (true/false)                             |
 
 ## Start at boot
 A sample systemd service file, `pfsense_influx_collector.service`, is included to automatically run pfSense-to-InfluxDB on boot. Open the file to change the following lines to reflect your user and path to pfSenseInfluxCollector.py:
@@ -104,19 +112,19 @@ rm -r pfsense-to-influxdb-*
 ## InfluxDB Schema
 ### Measurement: gateway_status
 | Field  | Description                                            |
-|:-------|:-------------------------------------------------------|
+| :----- | :----------------------------------------------------- |
 | name   | Name of gateway                                        |
 | rtt    | Round-trip time                                        |
 | rttsd  | Standard deviation of RTT                              |
 | status | Status of gateway (1 for online, 0 for other statuses) |
 
-| Tag   | Description                  |
-|:------|:-----------------------------|
-| host  | pfSense hostname with domain |
+| Tag  | Description                  |
+| :--- | :--------------------------- |
+| host | pfSense hostname with domain |
 
 ### Measurement: interface_statistics
 | Field       | Description           |
-|:------------|:----------------------|
+| :---------- | :-------------------- |
 | bytes_in    | Number of bytes in    |
 | bytes_out   | Number of bytes out   |
 | collisions  | Number of collisions  |
@@ -127,37 +135,37 @@ rm -r pfsense-to-influxdb-*
 | packets_out | Number of packets out |
 
 | Tag       | Description                  |
-|:----------|:-----------------------------|
+| :-------- | :--------------------------- |
 | host      | pfSense hostname with domain |
 | interface | Interface being polled       |
 
 ### Measurement: interface_status
 | Field      | Description                                       |
-|:-----------|:--------------------------------------------------|
+| :--------- | :------------------------------------------------ |
 | ip_address | IP address of interface                           |
 | name       | Name of interface                                 |
 | status     | Status of interface (1 for online, 0 for offline) |
 
 | Tag       | Description                  |
-|:----------|:-----------------------------|
+| :-------- | :--------------------------- |
 | host      | pfSense hostname with domain |
 | interface | Interface being polled       |
 
 ### Measurement: openvpn_client_status
 | Field           | Description                                            |
-|:----------------|:-------------------------------------------------------|
+| :-------------- | :----------------------------------------------------- |
 | remote_host     | Remote IP address of OpenVPN client                    |
 | status          | Status of OpenVPN client (1 for online, 0 for offline) |
 | virtual_address | Virtual IP address of OpenVPN client                   |
 
 | Tag   | Description                  |
-|:------|:-----------------------------|
+| :---- | :--------------------------- |
 | host  | pfSense hostname with domain |
 | vpnid | ID of OpenVPN Client         |
 
 ### Measurement: openvpn_connected_clients
 | Field             | Description                 |
-|:------------------|:----------------------------|
+| :---------------- | :-------------------------- |
 | client_id         | Client ID of connection     |
 | common_name       | Name connected user         |
 | connected_clients | Number of connected clients |
@@ -165,18 +173,18 @@ rm -r pfsense-to-influxdb-*
 | virtual_address   | Virtual IP address of user  |
 
 | Tag    | Description                                   |
-|:-------|:----------------------------------------------|
+| :----- | :-------------------------------------------- |
 | host   | pfSense hostname with domain                  |
 | server | pfSense OpenVPN Server client is connected to |
 
 ### Measurement: services_status
 | Field       | Description                                     |
-|:------------|:------------------------------------------------|
+| :---------- | :---------------------------------------------- |
 | description | Description of service                          |
 | status      | Status of service (1 for online, 0 for offline) |
 
 | Tag     | Description                  |
-|:--------|:-----------------------------|
+| :------ | :--------------------------- |
 | host    | pfSense hostname with domain |
 | service | Service being polled         |
 
