@@ -35,6 +35,14 @@ Note: pfSense-to-InfluxDB is not intended to be installed on pfSense since pfSen
   pip3 install -r requirements.txt
   ```
 
+## Docker
+
+pfSense-to-InfluxDB is also published on Docker Hub and can be run using the following command with a custom settings file:
+
+```bash
+docker run -v settings.conf:/app/config/settings.conf armaant/pfsense-to-influxdb:1.1.0
+```
+
 ## Configuration
 Rename `settings.sample.conf` to `settings.conf` and add your desired settings:
 
