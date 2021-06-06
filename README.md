@@ -189,4 +189,4 @@ rm -r pfsense-to-influxdb-*
 | service | Service being polled         |
 
 ## License
-Licensed under the terms of the MIT license. See [LICENSE.md](https://github.com/ArmaanT/pfsense-to-influxdb/blob/master/LICENSE.md)
+Licensed under the terms of the MIT license. See [LICENSE.md](https://github.com/ArmaanT/pfsense-to-influxdb/blob/main/LICENSE.md)
