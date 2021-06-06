@@ -27,7 +27,7 @@ export class PfSenseToInfluxDBStack extends Stack {
           name: 'Get tag version',
           run: dedent`
           RAW_TAG=\${GITHUB_REF#refs/*/}
-          // Strip / characters
+          # Strip / characters
           TAG=\${TAG/\\//-}
           echo \${TAG}
           echo ::set-output name=tag::\${TAG}`,
