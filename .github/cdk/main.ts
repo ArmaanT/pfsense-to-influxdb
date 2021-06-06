@@ -17,6 +17,8 @@ export class PfSenseToInfluxDBStack extends Stack {
       }
     });
 
+    const formatImageName = (tag: string): string => `armaant/pfsense-to-influxdb:${tag}`
+
     new CheckoutJob(workflows, 'build-and-publish', {
       runsOn: 'ubuntu-latest',
       steps: [
@@ -43,7 +45,7 @@ export class PfSenseToInfluxDBStack extends Stack {
           uses: 'docker/build-push-action@v2',
           with: {
             push: "${{ startsWith(github.ref, 'refs/tags') }}",
-            tags: "latest,${{ steps.tag.outputs.tag }}"
+            tags: ["latest", "${{ steps.tag.outputs.tag }}"].map(formatImageName).join()
           },
         },
       ]
