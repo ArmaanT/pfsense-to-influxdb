@@ -11,4 +11,3 @@ RUN pip install -r requirements.txt
 COPY . /app/
 
 CMD ["python", "/app/pfSenseInfluxCollector.py", "--config", "/app/config/settings.conf"]
-
