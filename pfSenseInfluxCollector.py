@@ -49,7 +49,7 @@ class pfSenseInfluxCollector:
 		"""Get and save information about statuses of gateways."""
 		gateways = self.fauxapi_function_call_args("return_gateways_status", "true")
 		for gateway in gateways:
-			gateway_status = 1 if gateways[gateway]['status'] == "none" else 0
+			gateway_status = 0 if gateways[gateway]['status'] == "down" else 1
 			gateway_data = [
 				{
 					"measurement": "gateway_status",
