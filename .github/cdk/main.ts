@@ -1,4 +1,4 @@
-// import dedent from 'ts-dedent';
+import dedent from 'ts-dedent';
 import { Construct } from "constructs";
 import { App, CheckoutJob, Stack, Workflow } from "cdkactions";
 
@@ -25,7 +25,12 @@ export class PfSenseToInfluxDBStack extends Stack {
         {
           id: 'tag',
           name: 'Get tag version',
-          run: 'echo ::set-output name=tag::${GITHUB_REF#refs/*/}',
+          run: dedent`
+          RAW_TAG=\${GITHUB_REF#refs/*/}
+          // Strip / characters
+          TAG=\${TAG/\//-}
+          echo \${TAG}
+          echo ::set-output name=tag::\${TAG}`,
         },
         {
           uses: 'docker/setup-qemu-action@v1',
